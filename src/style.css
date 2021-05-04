@@ -1,0 +1,150 @@
+h1,
+h2,
+h3 {
+  font-family: "Pangolin", cursive;
+  line-height: 25px;
+}
+
+h1,
+h2 {
+  font-size: 34px;
+}
+
+h1 {
+  color: #387c6d;
+}
+
+h2 {
+  color: #e9896a;
+}
+
+h3 {
+  color: #343f56;
+}
+
+small {
+  font-size: smaller;
+  line-height: 15px;
+  text-align: left;
+  color: grey;
+}
+
+p.footer {
+  color: #3c4e68;
+  text-align: center;
+  font-family: "Pangolin", cursive;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+p.day {
+  color: #387c6d;
+  margin: 0;
+}
+
+p.day-temp {
+  color: #343f56;
+}
+
+.Hilary {
+  font-family: "Dancing Script", cursive;
+  color: #387c6d;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.Hilary:hover {
+  color: #e9896a;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+input.search-engine {
+  background-color: white;
+  color: #343f56;
+  border: 1px #343f56 solid;
+}
+
+.search-engine:focus {
+  background-color: #e4b09fbd;
+  color: #343f56;
+}
+
+.go-button {
+  background-color: #343f56;
+  color: white;
+}
+
+.go-button:hover {
+  background-color: #3c4e68;
+}
+
+.weather-app {
+  border: solid 1.5px #343f56;
+  border-radius: 25px;
+  margin: 60px auto;
+  max-width: 600px;
+  padding: 30px 30px 10px;
+  background: #ecc5b9d5;
+  box-shadow: 8px 6px 6px #3c4e68;
+  font-family: "Pangolin", cursive;
+}
+
+.future-weather-icon {
+  font-size: 30px;
+  color: #3c4e68;
+  padding: 10px 0;
+}
+
+.future-weather {
+  text-align: center;
+}
+
+.current-weather-icon {
+  font-size: 150px;
+  position: relative;
+  color: #e9896a;
+  top: -10px;
+  right: 80px;
+  line-height: 200px;
+  max-height: 2000px;
+  max-width: 200px;
+}
+
+.day-one {
+  padding-left: 0;
+}
+
+.btn-info {
+  background: #387c6d;
+  border: 1px solid #387c6d;
+  color: white;
+}
+
+.btn-info:hover {
+  color: white;
+  background: #3b9783;
+  border: 1px solid #3b9783;
+}
+
+.btn-outline-primary {
+  background: white;
+  color: #343f56;
+  border-color: #343f56;
+}
+
+.btn-check:active + .btn-outline-primary,
+.btn-check:checked + .btn-outline-primary,
+.btn-outline-primary.active,
+.btn-outline-primary.dropdown-toggle.show,
+.btn-outline-primary:active {
+  background: #343f56;
+  border-color: #343f56;
+}
+
+.btn-outline-primary:hover {
+  color: white;
+  background: #343f56;
+  border-color: #343f56;
+}
