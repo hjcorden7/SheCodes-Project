@@ -34,7 +34,7 @@ p.footer {
   text-align: center;
   font-family: "Pangolin", cursive;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 17px;
 }
 
 p.day {
@@ -46,18 +46,17 @@ p.day-temp {
   color: #343f56;
 }
 
-.Hilary {
-  font-family: "Dancing Script", cursive;
+.footer-link {
+  font-family: "Pangolin", cursive;
   color: #387c6d;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 20px;
 }
 
-.Hilary:hover {
+.footer-link:hover {
   color: #e9896a;
   font-weight: bold;
   text-decoration: none;
+  font-size: 18px;
 }
 
 input.search-engine {
