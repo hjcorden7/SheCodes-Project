@@ -3,6 +3,13 @@ h2,
 h3 {
   font-family: "Pangolin", cursive;
   line-height: 18px;
+}
+
+h1:first-letter {
+  text-transform: capitalize;
+}
+
+h4:first-letter {
   text-transform: capitalize;
 }
 
@@ -22,7 +29,6 @@ h2 {
 h3,
 h4 {
   color: #343f56;
-  text-transform: capitalize;
 }
 
 h3 {
