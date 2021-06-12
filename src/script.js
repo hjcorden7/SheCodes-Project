@@ -57,44 +57,48 @@ function formatDate(timestamp) {
   return `${day}, ${hours}:${minutes}`;
 }
 
-function changeCityDisplay(event) {
-  event.preventDefault();
-  let cityInput = document.querySelector("#search-engine");
-  let h2 = document.querySelector("h2");
-  let upperCaseCity =
-    cityInput.value.charAt(0).toUpperCase() + cityInput.value.slice(1);
+function logTemp(response) {
+  let descriptionElement = document.querySelector("#description");
+  let cityElement = document.querySelector("#city");
+  let tempElement = document.querySelector("#temperature");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
+  let countryElement = document.querySelector("#country");
 
-  h2.innerHTML = `${upperCaseCity}`;
-
-  function logTemp(response) {
-    let descriptionElement = document.querySelector("#description");
-    let tempElement = document.querySelector("#temperature");
-    let humidityElement = document.querySelector("#humidity");
-    let windElement = document.querySelector("#wind");
-    let dateElement = document.querySelector("#date");
-    let iconElement = document.querySelector("#icon");
-
-    tempElement.innerHTML = Math.round(response.data.main.temp);
-    descriptionElement.innerHTML = response.data.weather[0].description;
-    humidityElement.innerHTML = response.data.main.humidity;
-    windElement.innerHTML = Math.round(response.data.wind.speed);
-    dateElement.innerHTML = formatDate(response.data.dt * 1000);
-    iconElement.setAttribute(
-      "src",
-      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-    );
-    iconElement.setAttribute("alt", response.data.weather[0].description);
-  }
-
-  let unit = "metric";
-  let apiKey = "28e32eab8c2a4e566136c12d1cd18fb8";
-  let apiEndPoint = "api.openweathermap.org/data/2.5/weather?";
-  let apiURL = `https://${apiEndPoint}q=${upperCaseCity}&units=${unit}&appid=${apiKey}`;
-  axios.get(apiURL).then(logTemp);
+  tempElement.innerHTML = Math.round(response.data.main.temp);
+  cityElement.innerHTML = response.data.name;
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  countryElement.innerHTML = response.data.sys.country;
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 let cityEntered = document.querySelector("form.search");
-cityEntered.addEventListener("submit", changeCityDisplay);
+cityEntered.addEventListener("submit", handleSubmit);
+
+function search(city) {
+  let unit = "metric";
+  let apiKey = "28e32eab8c2a4e566136c12d1cd18fb8";
+  let apiEndPoint = "api.openweathermap.org/data/2.5/weather?";
+  let apiURL = `https://${apiEndPoint}q=${city}&units=${unit}&appid=${apiKey}`;
+  axios.get(apiURL).then(logTemp);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#search-engine");
+  search(cityInput.value);
+}
+
+search("London");
 
 //switch from C to F
 

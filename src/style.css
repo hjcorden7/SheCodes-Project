@@ -24,6 +24,7 @@ h1 {
 
 h2 {
   color: #e9896a;
+  text-transform: capitalize;
 }
 
 h3,
