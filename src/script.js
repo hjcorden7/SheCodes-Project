@@ -1,8 +1,8 @@
 //Display day and time
 
-function formatDate() {
+function loadCurrentDate() {
   let now = new Date();
-  let currentDate = now.getDate();
+  let = now.getDate();
 
   let days = [
     "Sunday",
@@ -24,13 +24,39 @@ function formatDate() {
     minutes = `0${minutes}`;
   }
 
-  let h1 = document.querySelector("h1");
-  h1.innerHTML = `${day}, ${hours}:${minutes}`;
+  let date = document.querySelector("#date");
+  date.innerHTML = `${day}, ${hours}:${minutes}`;
 }
 
-formatDate();
+loadCurrentDate();
 
 //Change City and temperature of searched city
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${day}, ${hours}:${minutes}`;
+}
+
 function changeCityDisplay(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#search-engine");
@@ -41,15 +67,16 @@ function changeCityDisplay(event) {
   h2.innerHTML = `${upperCaseCity}`;
 
   function logTemp(response) {
-    let tempRounded = Math.round(response.data.main.temp);
-    let descriptionElement = document.querySelector("h4");
-    let updatedTemp = document.querySelector("h3");
+    let descriptionElement = document.querySelector("#description");
+    let tempElement = document.querySelector("#temperature");
     let humidityElement = document.querySelector("#humidity");
     let windElement = document.querySelector("#wind");
-    updatedTemp.innerHTML = `${tempRounded}°C`;
+    let dateElement = document.querySelector("#date");
+    tempElement.innerHTML = Math.round(response.data.main.temp);
     descriptionElement.innerHTML = response.data.weather[0].description;
     humidityElement.innerHTML = response.data.main.humidity;
-    windElement.innerHTML = response.data.wind.speed;
+    windElement.innerHTML = Math.round(response.data.wind.speed);
+    dateElement.innerHTML = formatDate(response.data.dt * 1000);
   }
 
   let unit = "metric";
