@@ -66,6 +66,7 @@ function logTemp(response) {
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
   let countryElement = document.querySelector("#country");
+  celciusTemperature = response.data.main.temp;
 
   tempElement.innerHTML = Math.round(response.data.main.temp);
   cityElement.innerHTML = response.data.name;
@@ -130,9 +131,24 @@ function displayCurrentLocation(event) {
 let currentLocationButton = document.querySelector("#current-weather");
 currentLocationButton.addEventListener("click", displayCurrentLocation);
 
-//switch from C to F
+//switch unit
 
-//function switchUnit(event) {
+function switchUnits(event) {
+  let unitFahrenheit = document.querySelector("#F-select");
+  let unitCelcius = document.querySelector("#C-select");
+  let temperatureElement = document.querySelector("#temperature");
+  if (unitFahrenheit.checked === true) {
+    temperatureElement.innerHTML = `(${celciusTemperature} * 9)/5 + 32 °F`;
+  } else {
+    temperatureElement.innerHTML = `${celciusTemperature}`;
+    unitCelcius.checked === true;
+  }
+}
+
+let celciusTemperature = null;
+
+let unitRadio = document.querySelector("form.unit");
+unitRadio.addEventListener("click", switchUnits());
 
 //function switchUnit(event) {
 //let h3 = document.querySelector("h3");
