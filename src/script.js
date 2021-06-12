@@ -42,9 +42,14 @@ function changeCityDisplay(event) {
 
   function logTemp(response) {
     let tempRounded = Math.round(response.data.main.temp);
-    let message = `${tempRounded}°C`;
+    let descriptionElement = document.querySelector("h4");
     let updatedTemp = document.querySelector("h3");
-    updatedTemp.innerHTML = message;
+    let humidityElement = document.querySelector("#humidity");
+    let windElement = document.querySelector("#wind");
+    updatedTemp.innerHTML = `${tempRounded}°C`;
+    descriptionElement.innerHTML = response.data.weather[0].description;
+    humidityElement.innerHTML = response.data.main.humidity;
+    windElement.innerHTML = response.data.wind.speed;
   }
 
   let unit = "metric";
