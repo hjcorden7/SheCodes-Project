@@ -68,7 +68,7 @@ function logTemp(response) {
   let countryElement = document.querySelector("#country");
   celciusTemperature = response.data.main.temp;
 
-  tempElement.innerHTML = Math.round(response.data.main.temp);
+  tempElement.innerHTML = `${Math.round(response.data.main.temp)}°C`;
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
@@ -137,18 +137,21 @@ function switchUnits(event) {
   let unitFahrenheit = document.querySelector("#F-select");
   let unitCelcius = document.querySelector("#C-select");
   let temperatureElement = document.querySelector("#temperature");
-  if (unitFahrenheit.checked === true) {
-    temperatureElement.innerHTML = `(${celciusTemperature} * 9)/5 + 32 °F`;
+  if (unitFahrenheit.checked) {
+    temperatureElement.innerHTML = `${Math.round(celciusTemperature)}°C`;
+    unitCelcius.checked = true;
+    unitFahrenheit.checked = false;
   } else {
-    temperatureElement.innerHTML = `${celciusTemperature}`;
-    unitCelcius.checked === true;
+    temperatureElement.innerHTML = `${Math.round(
+      (celciusTemperature * 9) / 5 + 32
+    )}°F`;
+    unitFahrenheit.checked = true;
+    unitCelcius.checked = false;
   }
 }
-
 let celciusTemperature = null;
-
 let unitRadio = document.querySelector("form.unit");
-unitRadio.addEventListener("click", switchUnits());
+unitRadio.addEventListener("click", switchUnits);
 
 //function switchUnit(event) {
 //let h3 = document.querySelector("h3");
