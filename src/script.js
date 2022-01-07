@@ -101,6 +101,7 @@ function handleSubmit(event) {
 
 search("London");
 
+
 //switch from C to F
 
 //Show current temp/city - see if there is a way to show London rather than City of Westminster basedon coordinates
@@ -168,3 +169,21 @@ unitRadio.addEventListener("click", switchUnits);
 
 //let unitRadio = document.querySelector("form.unit");
 //unitRadio.addEventListener("click", switchUnit());
+
+//displayForecast
+
+displayForecast();
+
+function displayForecast() {
+let forecastElement = document.querySelector("#forecast")
+forecastElement.innerHTML=`
+ <div class="row weather-forecast" id="forecast">
+          <div class="col-2">
+            <p class="forecast-date"> Saturday </p> 
+             <i class="fas fa-sun future-weather-icon"></i> <br> 
+             <p class="forecast-temp"> 11°C / °F</p>
+          
+           
+          </div>
+`
+}
