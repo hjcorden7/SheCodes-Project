@@ -57,6 +57,47 @@ function formatDate(timestamp) {
   return `${day}, ${hours}:${minutes}`;
 }
 
+//display future forecast
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
+ <div class="weather-forecast" id="forecast">
+          <div class="col-2">
+            <p class="forecast-date"> ${formatDay(forecastDay.dt)} </p> 
+             <img src="http://openweathermap.org/img/wn/${
+               forecastDay.weather[0].icon
+             }@2x.png"  id="future-weather-icon"/><br> 
+             <p class="forecast-temp"> ${Math.round(
+               forecastDay.temp.day
+             )} °C </p>
+          
+           
+          </div> </div>
+`;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+
 function getForecast(coordinates) {
   console.log(coordinates);
   let apiKey = "28e32eab8c2a4e566136c12d1cd18fb8";
@@ -64,6 +105,8 @@ function getForecast(coordinates) {
   console.log(apiURL);
   axios.get(apiURL).then(displayForecast);
 }
+
+//Show current weather of searched city
 
 function logTemp(response) {
   let descriptionElement = document.querySelector("#description");
@@ -111,8 +154,6 @@ function handleSubmit(event) {
 
 search("London");
 
-//switch from C to F
-
 //Show current temp/city - see if there is a way to show London rather than City of Westminster basedon coordinates
 function printTemp(response) {
   let currentTempRounded = Math.round(response.data.main.temp);
@@ -140,82 +181,3 @@ function displayCurrentLocation(event) {
 
 let currentLocationButton = document.querySelector("#current-weather");
 currentLocationButton.addEventListener("click", displayCurrentLocation);
-
-//switch unit
-
-function switchUnits(event) {
-  let unitFahrenheit = document.querySelector("#F-select");
-  let unitCelcius = document.querySelector("#C-select");
-  let temperatureElement = document.querySelector("#temperature");
-  if (unitFahrenheit.checked) {
-    temperatureElement.innerHTML = `${Math.round(celciusTemperature)}°C`;
-    unitCelcius.checked = true;
-    unitFahrenheit.checked = false;
-  } else {
-    temperatureElement.innerHTML = `${Math.round(
-      (celciusTemperature * 9) / 5 + 32
-    )}°F`;
-    unitFahrenheit.checked = true;
-    unitCelcius.checked = false;
-  }
-}
-let celciusTemperature = null;
-let unitRadio = document.querySelector("form.unit");
-unitRadio.addEventListener("click", switchUnits);
-
-//function switchUnit(event) {
-//let h3 = document.querySelector("h3");
-//let unitFahrenheit = document.querySelector("#F-select");
-//let unitCelsuis = document.querySelector("#C-select");
-//if (unitFahrenheit.checked) {
-//h3.innerHTML = `${tempRounded}°C`;
-//unitCelsuis.checked = true;
-//} else {
-//h3.innerHTML = `(${tempRounded}*1.8) + 32 °F`;
-//unitFahrenheit.checked = true;
-//}
-//}
-
-//let unitRadio = document.querySelector("form.unit");
-//unitRadio.addEventListener("click", switchUnit());
-
-//displayForecast
-
-function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  return days[day];
-}
-
-function displayForecast(response) {
-  let forecast = response.data.daily;
-  let forecastElement = document.querySelector("#forecast");
-
-  let forecastHTML = `<div class="row">`;
-
-  forecast.forEach(function (forecastDay, index) {
-    if (index < 5) {
-      forecastHTML =
-        forecastHTML +
-        `
- <div class="weather-forecast" id="forecast">
-          <div class="col-2">
-            <p class="forecast-date"> ${formatDay(forecastDay.dt)} </p> 
-             <img src="http://openweathermap.org/img/wn/${
-               forecastDay.weather[0].icon
-             }@2x.png"  id="future-weather-icon"/><br> 
-             <p class="forecast-temp"> ${Math.round(
-               forecastDay.temp.day
-             )} °C / °F</p>
-          
-           
-          </div> </div>
-`;
-    }
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
-}
