@@ -181,25 +181,38 @@ unitRadio.addEventListener("click", switchUnits);
 
 //displayForecast
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
  <div class="weather-forecast" id="forecast">
           <div class="col-2">
-            <p class="forecast-date"> ${day} </p> 
-             <i class="fas fa-sun future-weather-icon"></i> <br> 
-             <p class="forecast-temp"> 11°C / °F</p>
+            <p class="forecast-date"> ${formatDay(forecastDay.dt)} </p> 
+             <img src="http://openweathermap.org/img/wn/${
+               forecastDay.weather[0].icon
+             }@2x.png"  id="future-weather-icon"/><br> 
+             <p class="forecast-temp"> ${Math.round(
+               forecastDay.temp.day
+             )} °C / °F</p>
           
            
           </div> </div>
 `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
