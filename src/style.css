@@ -148,17 +148,6 @@ input.search-engine {
   border-color: #343f56;
 }
 
-.btn-check:active + .btn-outline-primary,
-.btn-check:checked + .btn-outline-primary,
-.btn-outline-primary.active,
-.btn-outline-primary.dropdown-toggle.show,
-.btn-outline-primary:active {
-  background: #343f56;
-  border-color: #343f56;
-}
-
-.btn-outline-primary:hover {
-  color: white;
-  background: #343f56;
-  border-color: #343f56;
+.weather-forecast {
+  margin: 0;
 }
