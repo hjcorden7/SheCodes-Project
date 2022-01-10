@@ -77,7 +77,7 @@ function displayForecast(response) {
       forecastHTML =
         forecastHTML +
         `
- <div class="weather-forecast" id="forecast">
+ 
           <div class="col-2">
             <p class="forecast-date"> ${formatDay(forecastDay.dt)} </p> 
              <img src="http://openweathermap.org/img/wn/${
@@ -135,8 +135,7 @@ function logTemp(response) {
   getForecast(response.data.coord);
 }
 
-let cityEntered = document.querySelector("form.search");
-cityEntered.addEventListener("submit", handleSubmit);
+//search engine
 
 function search(city) {
   let unit = "metric";
@@ -151,6 +150,9 @@ function handleSubmit(event) {
   let cityInput = document.querySelector("#search-engine");
   search(cityInput.value);
 }
+
+let cityEntered = document.querySelector("#search-form");
+cityEntered.addEventListener("submit", handleSubmit);
 
 search("London");
 
