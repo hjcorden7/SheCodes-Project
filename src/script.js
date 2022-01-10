@@ -108,7 +108,7 @@ function getForecast(coordinates) {
 
 //Show current weather of searched city
 
-function logTemp(response) {
+function displayWeather(response) {
   let descriptionElement = document.querySelector("#description");
   let cityElement = document.querySelector("#city");
   let tempElement = document.querySelector("#temperature");
@@ -134,7 +134,6 @@ function logTemp(response) {
 
   getForecast(response.data.coord);
 }
-
 //search engine
 
 function search(city) {
@@ -142,7 +141,7 @@ function search(city) {
   let apiKey = "28e32eab8c2a4e566136c12d1cd18fb8";
   let apiEndPoint = "api.openweathermap.org/data/2.5/weather?";
   let apiURL = `https://${apiEndPoint}q=${city}&units=${unit}&appid=${apiKey}`;
-  axios.get(apiURL).then(logTemp);
+  axios.get(apiURL).then(displayWeather);
 }
 
 function handleSubmit(event) {
@@ -157,14 +156,14 @@ cityEntered.addEventListener("submit", handleSubmit);
 search("London");
 
 //Show current temp/city - see if there is a way to show London rather than City of Westminster basedon coordinates
-function printTemp(response) {
-  let currentTempRounded = Math.round(response.data.main.temp);
-  let currentCityUpdated = response.data.name;
-  let h3 = document.querySelector("h3");
-  h3.innerHTML = `${currentTempRounded}°C`;
-  let h2 = document.querySelector("h2");
-  h2.innerHTML = `${currentCityUpdated}`;
-}
+//function printTemp(response) {
+//let currentTempRounded = Math.round(response.data.main.temp);
+//let currentCityUpdated = response.data.name;
+//let h3 = document.querySelector("h3");
+//h3.innerHTML = `${currentTempRounded}°C`;
+//let h2 = document.querySelector("h2");
+//h2.innerHTML = `${currentCityUpdated}`;
+//}
 
 function getCurrentLocation(position) {
   let latitude = position.coords.latitude;
@@ -174,7 +173,7 @@ function getCurrentLocation(position) {
   let unit = "metric";
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unit}&appid=${apiKey}`;
 
-  axios.get(apiURL).then(printTemp);
+  axios.get(apiURL).then(displayWeather);
 }
 
 function displayCurrentLocation(event) {
