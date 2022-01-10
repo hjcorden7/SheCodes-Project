@@ -44,29 +44,22 @@ small {
   color: grey;
 }
 
+div.forecast-date {
+  text-align: center;
+  color: #343f56;
+}
+
+div.forecast-temp {
+  text-align: center;
+  color: #343f56;
+}
+
 p.footer {
   color: #3c4e68;
   text-align: center;
   font-family: "Pangolin", cursive;
   font-weight: 400;
   font-size: 17px;
-}
-
-p.day {
-  color: #387c6d;
-  margin: 0;
-}
-
-p.day-temp {
-  color: #343f56;
-}
-
-div.forecast-date {
-  text-align: center;
-}
-
-div.forecast-temp {
-  text-align: center;
 }
 
 .footer-link {
@@ -88,11 +81,6 @@ input.search-engine {
   border: 1px #343f56 solid;
 }
 
-.search-engine:focus {
-  background-color: #e4b09fbd;
-  color: #343f56;
-}
-
 .go-button {
   background-color: #343f56;
   color: white;
@@ -107,7 +95,7 @@ input.search-engine {
   border-radius: 25px;
   margin: 60px auto;
   max-width: 600px;
-  padding: 30px 30px 10px;
+  padding: 30px 30px 30px;
   background: #ecc5b9d5;
   box-shadow: 8px 6px 6px #3c4e68;
   font-family: "Pangolin", cursive;
@@ -116,17 +104,9 @@ input.search-engine {
 .current-weather-icon {
   font-size: 150px;
   position: relative;
-  color: #e9896a;
+
   top: -10px;
   right: 200px;
-}
-
-.future-weather {
-  text-align: center;
-}
-
-.day-one {
-  padding-left: 0;
 }
 
 .btn-info {
@@ -147,11 +127,6 @@ input.search-engine {
   border-color: #343f56;
 }
 
-.weather-forecast {
-  margin: 0;
-}
-
 img.future-weather-icon {
   display: block;
-  width: 20%;
 }
