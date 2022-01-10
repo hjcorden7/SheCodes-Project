@@ -38,7 +38,7 @@ h3 {
 }
 
 small {
-  font-size: smaller;
+  font-size: 15px;
   line-height: 15px;
   text-align: left;
   color: grey;
@@ -59,6 +59,14 @@ p.day {
 
 p.day-temp {
   color: #343f56;
+}
+
+div.forecast-date {
+  text-align: center;
+}
+
+div.forecast-temp {
+  text-align: center;
 }
 
 .footer-link {
@@ -105,25 +113,16 @@ input.search-engine {
   font-family: "Pangolin", cursive;
 }
 
-.future-weather-icon {
-  font-size: 30px;
-  color: #3c4e68;
-  padding: 10px 0;
-}
-
-.future-weather {
-  text-align: center;
-}
-
 .current-weather-icon {
   font-size: 150px;
   position: relative;
   color: #e9896a;
   top: -10px;
-  right: 80px;
-  line-height: 200px;
-  max-height: 2000px;
-  max-width: 200px;
+  right: 200px;
+}
+
+.future-weather {
+  text-align: center;
 }
 
 .day-one {
@@ -150,4 +149,9 @@ input.search-engine {
 
 .weather-forecast {
   margin: 0;
+}
+
+img.future-weather-icon {
+  display: block;
+  width: 20%;
 }
