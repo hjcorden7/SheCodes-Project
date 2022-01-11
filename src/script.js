@@ -73,19 +73,21 @@ function displayForecast(response) {
   let forecastHTML = `<span class="row">`;
 
   forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    if (index < 5) {
       forecastHTML =
         forecastHTML +
         `
  
-          <div class="col-2">
+          <div class="col">
             <div class="forecast-date"> ${formatDay(forecastDay.dt)} </div> 
              <img src="http://openweathermap.org/img/wn/${
                forecastDay.weather[0].icon
-             }@2x.png"  class="future-weather-icon"/>
-             <div class="forecast-temp"> ${Math.round(
-               forecastDay.temp.day
-             )} °C </div>
+             }@2x.png"  class="future-weather-icon"/> 
+             <span class="forecast-temp-max"> ${Math.round(
+               forecastDay.temp.max
+             )} ° </span> | <span class="forecast-temp-min"> ${Math.round(
+          forecastDay.temp.min
+        )} ° </span> 
           
            
           </div> </div>
@@ -95,14 +97,12 @@ function displayForecast(response) {
 
   forecastHTML = forecastHTML + `</span>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "28e32eab8c2a4e566136c12d1cd18fb8";
   let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  console.log(apiURL);
+
   axios.get(apiURL).then(displayForecast);
 }
 
@@ -128,7 +128,7 @@ function displayWeather(response) {
   countryElement.innerHTML = response.data.sys.country;
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@4x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
@@ -154,16 +154,6 @@ let cityEntered = document.querySelector("#search-form");
 cityEntered.addEventListener("submit", handleSubmit);
 
 search("London");
-
-//Show current temp/city - see if there is a way to show London rather than City of Westminster basedon coordinates
-//function printTemp(response) {
-//let currentTempRounded = Math.round(response.data.main.temp);
-//let currentCityUpdated = response.data.name;
-//let h3 = document.querySelector("h3");
-//h3.innerHTML = `${currentTempRounded}°C`;
-//let h2 = document.querySelector("h2");
-//h2.innerHTML = `${currentCityUpdated}`;
-//}
 
 function getCurrentLocation(position) {
   let latitude = position.coords.latitude;
