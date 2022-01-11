@@ -41,7 +41,7 @@ small {
   font-size: 15px;
   line-height: 15px;
   text-align: left;
-  color: grey;
+  color: #6d7581;
 }
 
 div.forecast-date {
@@ -49,8 +49,11 @@ div.forecast-date {
   color: #343f56;
 }
 
-div.forecast-temp {
+div.col {
   text-align: center;
+}
+
+span.forecast-temp-max {
   color: #343f56;
 }
 
@@ -104,6 +107,7 @@ input.search-engine {
 .current-weather-icon {
   font-size: 150px;
   position: relative;
+
   top: -10px;
   right: 200px;
 }
@@ -131,4 +135,8 @@ input.search-engine {
   margin-left: auto;
   margin-right: auto;
   width: 90%;
+}
+
+.forecast-temp-min {
+  color: #6d7581;
 }
