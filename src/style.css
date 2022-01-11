@@ -104,7 +104,6 @@ input.search-engine {
 .current-weather-icon {
   font-size: 150px;
   position: relative;
-
   top: -10px;
   right: 200px;
 }
@@ -127,6 +126,9 @@ input.search-engine {
   border-color: #343f56;
 }
 
-img.future-weather-icon {
+.future-weather-icon {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
 }
